@@ -4,7 +4,7 @@
 int main(int argc, char** argv) {
 	CPU* system = new CPU();
 	
-	std::ifstream file("fuckery.asm");
+	std::ifstream file("test.asm");
 	std::string str;
 	std::string file_contents;
 	while (std::getline(file, str))
