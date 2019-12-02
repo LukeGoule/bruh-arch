@@ -1,7 +1,7 @@
 #include "Assembler.h"
 
 Opcode NULL_OPCODE = {
-	"NULL FUCKIN OP",
+	"mhm yes nope.",
 	0xDEADBEEF,
 	(int32_t)0xEADBEEF,
 };
