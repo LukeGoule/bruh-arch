@@ -14,9 +14,9 @@ int main(int argc, char** argv) {
 	}
 
 	printf("Assembling...\n");
-	Assembler::AssembleToBIN(file_contents, "fuck.bin");      // save binary
+	Assembler::AssembleToBIN(file_contents, "test.bin");      // save binary
 	
-	auto bytecode = Assembler::LoadBIN("fuck.bin");           // load binary
+	auto bytecode = Assembler::LoadBIN("test.bin");           // load binary
 
 	printf("\nExecuting...\n");
 	auto result = system->ExecuteProgram(bytecode, 0x0);
