@@ -5,6 +5,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <vector>
 
 // Memory setup
 #define STACK_SIZE 256								 // how much space we can allocate in the RAM for the stack

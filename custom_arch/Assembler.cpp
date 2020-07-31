@@ -89,7 +89,7 @@ namespace Assembler {
 
 	std::vector<uint32_t> assemble(std::string asmbly, bool debug) {
 		std::vector<uint32_t> output;
-		std::vector<uint32_t> labels; // funcs / coroutines etc
+		std::vector<std::string> labels; // funcs / coroutines etc
 
 		auto lines = split(asmbly, "\n");
 
@@ -98,8 +98,16 @@ namespace Assembler {
 
 			auto shids = split(line, " ");
 
+			if (shids[0][0] == ';') {
+				printf("found comment, continuing.\n");
+				
+				i++;
+
+				continue;
+			}
+
 			if (!is_valid_opcode(shids[0])) {
-				printf("Error(1) on line %d\n", i);
+				printf("Error during assembling: error(1) on line %d\n", i);
 			}
 
 			vec_remove_empty(shids);
@@ -115,11 +123,10 @@ namespace Assembler {
 				new_vec.push_back(nshit);
 			}
 
-			if (shids[0] == '@') {
+			if (shids[0] == "@") {
 				labels.push_back(shids[0]);
 				continue;
 			}
-
 
 			Opcode mainOperation = get_op_by_name(shids[0]);
 			if ((new_vec.size() - 1) != mainOperation.argc) {
@@ -182,7 +189,7 @@ namespace Assembler {
 	std::vector<uint32_t> LoadBIN(std::string filename) {
 		std::vector<uint32_t> output;
 
-		FILE* file = fopen(filename.c_str(), "rb");;
+		FILE* file = fopen(filename.c_str(), "rb");
 
 		if (file == NULL) {
 			printf("Failed to load bin %s\n", filename.c_str());
